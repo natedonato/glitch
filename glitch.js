@@ -7,8 +7,22 @@ imageLoader.addEventListener('change', handleImage, false);
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 var button = document.getElementById("glitch");
+var button2 = document.getElementById("glitch2");
 var getPhoto = document.getElementById("getPhoto");
+var getGlitchedPhoto = document.getElementById("getGlitchedPhoto");
 button.addEventListener('click', glitch);
+button2.addEventListener('click', () =>{
+
+    let brightness = document.getElementById("bright");
+    document.getElementById("x").value = Math.floor((Math.random() * 10) + 5);
+    glitch();
+    brightness.checked = !brightness.checked;
+    glitch();
+    glitch();
+    brightness.checked = !brightness.checked;
+    glitch();
+    
+});
 getPhoto.addEventListener('click', handleFetch);
 
 function handleImage(e) {
@@ -26,7 +40,7 @@ function handleImage(e) {
 }
 
 function handleFetch(){
-    fetch("https://source.unsplash.com/800x800/?political,celebrity")
+    return fetch("https://source.unsplash.com/800x800/?political,celebrity,sexy,entertainment")
     .then(res => {
         var img = new Image();
         img.onload = function () {
@@ -36,21 +50,17 @@ function handleFetch(){
         };
     img.src = res.url + '?' + new Date().getTime();
     img.setAttribute('crossOrigin', '');
+    return res;
 });
-} 
-
-
-
+}
 
 function glitch(){
-    
     let x = document.getElementById("x").value;
     let percent = document.getElementById("percent");
     let brightness = document.getElementById("bright");
-    bright = true;
+    bright = !brightness.checked;
 
     percent.style.display = "block";
-    console.log("hey");
     var imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     var i;
     for (let j = 0; j < x; j++) {
