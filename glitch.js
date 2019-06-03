@@ -7,7 +7,9 @@ imageLoader.addEventListener('change', handleImage, false);
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 var button = document.getElementById("glitch");
+var getPhoto = document.getElementById("getPhoto");
 button.addEventListener('click', glitch);
+getPhoto.addEventListener('click', handleFetch);
 
 function handleImage(e) {
     var reader = new FileReader();
@@ -21,9 +23,27 @@ function handleImage(e) {
         img.src = event.target.result;
     };
     reader.readAsDataURL(e.target.files[0]);
-    }
+}
+
+function handleFetch(){
+    fetch("https://source.unsplash.com/800x800/?political,celebrity")
+    .then(res => {
+        var img = new Image();
+        img.onload = function () {
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx.drawImage(img, 0, 0);
+        };
+    img.src = res.url + '?' + new Date().getTime();
+    img.setAttribute('crossOrigin', '');
+});
+} 
+
+
+
 
 function glitch(){
+    
     let x = document.getElementById("x").value;
     let percent = document.getElementById("percent");
     let brightness = document.getElementById("bright");
@@ -53,7 +73,7 @@ function glitch(){
         }
     }
     ctx.putImageData(imgData, 0, 0);
-    gif.addFrame(canvas);
+    // gif.addFrame(canvas);
 }
 
 });
