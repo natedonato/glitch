@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="./glitch.js"></script>
+    <link rel="stylesheet" href="src.css">
     <title>glitch</title>
 </head>
 <body>
@@ -14,6 +15,7 @@
     Iterations: <input id="x" type="text" value="10"/>
     <input type="checkbox" id = "bright"> Bright? </input>
     <div id="percent" > Welcome to GlitchWorld!  Please note that images with large dimensions (800px+ on either side) or large iterations (over 200) may be slow to process. </div>
+    <button id="openmodal">View Sample Outputs</button>
 
     <form action="" style="display: flex; width: 500px; justify-content: space-between;
 ">
@@ -29,6 +31,72 @@
     </div>
 
     <img id="image" />
+    <div id="myModal" class="modal">
 
+    <div class="modal-content">
+        <span class="close">&times;</span>
+
+        <p>Sample Gallery</p>
+
+        <div class="row">
+  <div class="column">
+    <img src="./samples/oranges.png" alt="Oranges" style="width:100%" onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="./samples/model.png" alt="Model" style="width:100%" onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="./samples/shoes.png" alt="Shoes" style="width:100%" onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="./samples/child.png" alt="Child" style="width:100%" onclick="myFunction(this);">
+  </div>
+</div>
+
+<div class="container">
+  <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+  <img id="expandedImg" style="width:100%">
+  <div id="imgtext"></div>
+</div>
+
+<script>
+function myFunction(imgs) {
+  var expandImg = document.getElementById("expandedImg");
+  var imgText = document.getElementById("imgtext");
+  expandImg.src = imgs.src;
+  imgText.innerHTML = imgs.alt;
+  expandImg.parentElement.style.display = "block";
+}
+</script>
+
+    </div>
+    </div>
+    <script>
+        var modal = document.getElementById("myModal");
+        var modbtn = document.getElementById("openmodal")
+        var span = document.getElementsByClassName("close")[0];
+
+        modbtn.onclick = function () {
+                modal.style.display = "block";
+            }
+
+            span.onclick = function () {
+                modal.style.display = "none";
+            }
+
+        window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+
+    function myFunction(imgs) {
+        var expandImg = document.getElementById("expandedImg");
+        var imgText = document.getElementById("imgtext");
+        expandImg.src = imgs.src;
+        imgText.innerHTML = imgs.alt;
+        expandImg.parentElement.style.display = "block";
+    }
+    </script>
 </body>
 </html>
