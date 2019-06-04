@@ -10,15 +10,32 @@ var button = document.getElementById("glitch");
 var button2 = document.getElementById("glitch2");
 var getPhoto = document.getElementById("getPhoto");
 var getGlitchedPhoto = document.getElementById("getGlitchedPhoto");
+var downloadbutton = document.getElementById('download');
+
+downloadbutton.addEventListener('click', function (e) {
+        var element = document.createElement('a');
+        element.setAttribute('href', document.getElementById('canvas').toDataURL('image/png'));
+        element.setAttribute('download', 'glitch.png');
+        element.style.display = 'none';
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element);
+    });
+
 button.addEventListener('click', glitch);
 button2.addEventListener('click', () =>{
 
     let brightness = document.getElementById("bright");
-    document.getElementById("x").value = Math.floor((Math.random() * 10) + 5);
+    if(Math.random() > 0.5){brightness.checked = !brightness.checked;}
+    document.getElementById("x").value = Math.floor((Math.random() * 20) + 5);
     glitch();
+    document.getElementById("x").value = Math.floor((Math.random() * 20) + 5);
     brightness.checked = !brightness.checked;
     glitch();
+    document.getElementById("x").value = Math.floor((Math.random() * 20) + 5);
+    if (Math.random() > 0.5) { brightness.checked = !brightness.checked; }
     glitch();
+    document.getElementById("x").value = Math.floor((Math.random() * 20) + 5);
     brightness.checked = !brightness.checked;
     glitch();
     
@@ -40,7 +57,8 @@ function handleImage(e) {
 }
 
 function handleFetch(){
-    return fetch("https://source.unsplash.com/800x800/?political,celebrity,sexy,entertainment")
+    // return fetch("https://source.unsplash.com/800x800/?political,celebrity,sexy,entertainment")
+    return fetch("https://source.unsplash.com/800x800/")
     .then(res => {
         var img = new Image();
         img.onload = function () {
