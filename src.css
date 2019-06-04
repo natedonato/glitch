@@ -1,5 +1,4 @@
 .modal {
-  display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   left: 0;
@@ -42,14 +41,12 @@ body {
   font-family: Arial;
 }
 
-/* The grid: Four equal columns that floats next to each other */
 .column {
   float: left;
   width: 25%;
   padding: 10px;
 }
 
-/* Style the images inside the grid */
 .column img {
   opacity: 0.8; 
   cursor: pointer; 
