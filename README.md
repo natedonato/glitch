@@ -5,6 +5,8 @@
 
 ## Destructive Editing
   Glitch.js features customized filtering algorithms to create exciting and unpredictable results from any uploaded image.  Users can edit options directly through page forms allowing them for unique customization on their outputs; alternatively, a preset glitch button applies a number of pre-packaged operations for an easy introduction.
+    <img src="https://raw.githubusercontent.com/natedonato/glitch/master/samples/oranges.png" > 
+
 
 ## Unsplash API
   The app interfaces directly with the external photo API provided by [Unsplash](https://unsplash.com/) to easily provide professional quality images guaranteed free for reuse.  By using the external API, glitch is able to provide thousands of images worth of source material without increasing app hosting size.
