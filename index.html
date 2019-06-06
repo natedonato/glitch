@@ -8,11 +8,18 @@
     <link rel="stylesheet" href="src.css">
     <title>glitch</title>
 </head>
-<body>
+<body >
+    <div style="display: flex; height: 100%">
+      <div style="width: 100vh; height: 100vh;">
+        <canvas id="canvas" style="width: 100%;">
+        </canvas>
+      </div>
+    <div id ="controls" style="width: 300px;">
     <button id="getPhoto">GET RANDOM PHOTO</button>
     <button id="glitch">GLITCH</button>
     <button id="glitch2">preset glitch</button>
-    Iterations: <input id="x" type="text" value="10"/>
+    <br>
+    Iterations: <input id="x" type="text" value="10" style="width: 62px;"/>
     <input type="checkbox" id = "bright"> Bright? </input>
     <select id="direction">
       <option value = "l">Left</option>
@@ -20,24 +27,20 @@
       <option value = "u">Up</option>
       <option value = "d">Down</option>
     </select>
-
-    <div id="percent" > Welcome to GlitchWorld!  Please note that images with large dimensions (800px+ on either side) or large iterations (over 200) may be slow to process. </div>
+    
+    <div id="percent" > Welcome to GlitchWorld!  Please note: <br> images with large dimensions (800px+ <br> on either side) or large iterations (over <br> 200) may be slow to process. </div>
     <button id="openmodal">View Sample Outputs</button>
 
-    <form action="" style="display: flex; width: 500px; justify-content: space-between;
+    <form action="" style="display: flex; width: 200px; justify-content: space-between;
 ">
             
-        <input type="file" id="uploadPhoto" />
+        <input type="file" id="uploadPhoto" style="    width: 200px;
+"/>
                 <a href="#" class="button" id="download">Download</a>
 
     </form>
-
-    <div style="width: 800px; height: 800px;">
-        <canvas id="canvas" style="width: 100%;">
-        </canvas>
-    </div>
-    <!-- <canvas id ="inMemoryCanvas"></canvas> -->
-
+  </div>
+  </div>
     <img id="image" />
     <div id="myModal" class="modal">
 
