@@ -23,8 +23,10 @@ downloadbutton.addEventListener('click', function (e) {
 
 button.addEventListener('click', glitch);
 button2.addEventListener('click', () =>{
-
     let brightness = document.getElementById("bright");
+    let direction = document.getElementById("direction");
+    let dirs = ["l", "r", "u", "d"];
+    direction.value = dirs[Math.floor(Math.random()*4)];
     if(Math.random() > 0.5){brightness.checked = !brightness.checked;}
     document.getElementById("x").value = Math.floor((Math.random() * 20) + 5);
     glitch();
@@ -79,34 +81,30 @@ function glitch(){
     bright = !brightness.checked;
 
     percent.style.display = "block";
-    var inMemoryCanvas = document.createElement('canvas');
+    // var inMemoryCanvas = document.createElement('canvas');
+    var inMemoryCanvas = document.getElementById("inMemoryCanvas");
     inMemoryCanvas.width = canvas.width;
     inMemoryCanvas.height = canvas.height;
-    ictx = inMemoryCanvas.getContext('2d');
-    inMemoryCanvas.width = canvas.height;
-    inMemoryCanvas.height = canvas.width;
+    ictx = inMemoryCanvas.getContext('2d');    
+
     ictx.translate(inMemoryCanvas.width / 2, inMemoryCanvas.height / 2);
-    
+
     if(direction === "d"){
+        inMemoryCanvas.width = canvas.height;
+        inMemoryCanvas.height = canvas.width;
         ictx.rotate(Math.PI / 2);
     }else if (direction ==="u"){
+        // inMemoryCanvas.width = canvas.height;
+        // inMemoryCanvas.height = canvas.width;
         ictx.rotate(-Math.PI / 2);
     }else if (direction ==="r"){
         ictx.rotate(Math.PI);
     }
+
     ictx.drawImage(canvas, -inMemoryCanvas.width / 2, -inMemoryCanvas.height / 2);
     ictx.restore();
-
-
-
+    debugger;
     var imgData = ictx.getImageData(0, 0, canvas.width, canvas.height);
-
-
-    // if(direction === "u"){
-    //     ctx.rotate(Math.Pi / 2);
-    //     ctx.putImageData(imgData, 0, 0);
-    //     imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    // }
 
     var i;
     for (let j = 0; j < x; j++) {
@@ -139,21 +137,26 @@ function glitch(){
 
     ctx.putImageData(imgData, 0, 0);
 
-    inMemoryCanvas.width = canvas.height;
-    inMemoryCanvas.height = canvas.width;
+   
+    // inMemoryCanvas.width = canvas.height;
+    // inMemoryCanvas.height = canvas.width;
     ictx.translate(inMemoryCanvas.width / 2, inMemoryCanvas.height / 2);
     if (direction === "d") {
         ictx.rotate(-Math.PI / 2);
     }else if (direction ==="u"){
         ictx.rotate(Math.PI / 2);
+        imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        ictx.putImageData(imgData, 0, 0);
+
     }else if (direction === "r") {
         ictx.rotate(-Math.PI);
     }
-    ictx.drawImage(canvas, -inMemoryCanvas.width / 2, -inMemoryCanvas.height / 2);
-    ictx.restore();
+    // ictx.drawImage(canvas, -inMemoryCanvas.width / 2, -inMemoryCanvas.height / 2);
+    // ictx.drawImage(canvas, -inMemoryCanvas.width, -inMemoryCanvas.height);
+    // ictx.restore();
 
-    imgData = ictx.getImageData(0, 0, canvas.width, canvas.height);
-    ctx.putImageData(imgData, 0, 0);
+    // imgData = ictx.getImageData(0, 0, canvas.width, canvas.height);
+    // ctx.putImageData(imgData, 0, 0);
 
     // gif.addFrame(canvas);
 }
