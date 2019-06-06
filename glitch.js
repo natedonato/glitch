@@ -81,21 +81,17 @@ function glitch(){
     bright = !brightness.checked;
 
     percent.style.display = "block";
-    // var inMemoryCanvas = document.createElement('canvas');
-    var inMemoryCanvas = document.getElementById("inMemoryCanvas");
+    var inMemoryCanvas = document.createElement('canvas');
+    // var inMemoryCanvas = document.getElementById("inMemoryCanvas");
     inMemoryCanvas.width = canvas.width;
     inMemoryCanvas.height = canvas.height;
     ictx = inMemoryCanvas.getContext('2d');    
-
+    ictx.save();
     ictx.translate(inMemoryCanvas.width / 2, inMemoryCanvas.height / 2);
 
     if(direction === "d"){
-        inMemoryCanvas.width = canvas.height;
-        inMemoryCanvas.height = canvas.width;
         ictx.rotate(Math.PI / 2);
     }else if (direction ==="u"){
-        // inMemoryCanvas.width = canvas.height;
-        // inMemoryCanvas.height = canvas.width;
         ictx.rotate(-Math.PI / 2);
     }else if (direction ==="r"){
         ictx.rotate(Math.PI);
@@ -103,7 +99,6 @@ function glitch(){
 
     ictx.drawImage(canvas, -inMemoryCanvas.width / 2, -inMemoryCanvas.height / 2);
     ictx.restore();
-    debugger;
     var imgData = ictx.getImageData(0, 0, canvas.width, canvas.height);
 
     var i;
@@ -127,38 +122,39 @@ function glitch(){
         }
     }
 
-    // if (direction === "u") {
-    //     ictx.clearRect(0,0,canvas.width, canvas.height)
-    //     ictx.putImageData(imgData, 0, 0);
-
-    // }
-
-    // ctx.drawImage(inMemoryCanvas, canvas.width, canvas.height);
-
     ctx.putImageData(imgData, 0, 0);
 
-   
-    // inMemoryCanvas.width = canvas.height;
-    // inMemoryCanvas.height = canvas.width;
+    ictx = inMemoryCanvas.getContext('2d');
+    ictx.save();
     ictx.translate(inMemoryCanvas.width / 2, inMemoryCanvas.height / 2);
+
     if (direction === "d") {
         ictx.rotate(-Math.PI / 2);
-    }else if (direction ==="u"){
+    } else if (direction === "u") {
         ictx.rotate(Math.PI / 2);
-        imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        ictx.putImageData(imgData, 0, 0);
-
-    }else if (direction === "r") {
+    } else if (direction === "r") {
         ictx.rotate(-Math.PI);
     }
-    // ictx.drawImage(canvas, -inMemoryCanvas.width / 2, -inMemoryCanvas.height / 2);
-    // ictx.drawImage(canvas, -inMemoryCanvas.width, -inMemoryCanvas.height);
-    // ictx.restore();
 
-    // imgData = ictx.getImageData(0, 0, canvas.width, canvas.height);
-    // ctx.putImageData(imgData, 0, 0);
+    ictx.drawImage(canvas, -inMemoryCanvas.width / 2, -inMemoryCanvas.height / 2);
+    ictx.restore();
+    ctx.drawImage(inMemoryCanvas, 0,0);
 
-    // gif.addFrame(canvas);
+
+    // ictx.translate(inMemoryCanvas.width / 2, inMemoryCanvas.height / 2);
+    // if (direction === "d") {
+    //     ictx.rotate(-Math.PI / 2);
+    //     imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    //     ictx.putImageData(imgData, 0, 0);
+    // }else if (direction ==="u"){
+    //     ictx.rotate(Math.PI / 2);
+    //     imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    //     ictx.putImageData(imgData, 0, 0);
+
+    // }else if (direction === "r") {
+    //     ictx.rotate(-Math.PI);
+    // }
+
 }
 
 });
