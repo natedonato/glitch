@@ -94,7 +94,7 @@ function glitch(){
         ictx.rotate(Math.PI / 2);
     }else if (direction ==="d"){
         ictx.rotate(-Math.PI / 2);
-    }else if (direction ==="r"){
+    }else if (direction ==="l"){
         ictx.rotate(Math.PI);
     }
 
@@ -142,14 +142,14 @@ function glitch(){
         ictx.restore();
         ctx.drawImage(inMemoryCanvas, 0, x);
         ctx.drawImage(inMemoryCanvas, 0, -canvas.height + x);
-    } else if (direction === "r") {
+    } else if (direction === "l") {
         ictx.rotate(-Math.PI);
         ictx.drawImage(canvas, -inMemoryCanvas.width / 2, -inMemoryCanvas.height / 2);
         ictx.restore();
         ctx.drawImage(inMemoryCanvas, canvas.width - x, 0);
         ctx.drawImage(inMemoryCanvas, -x, 0);
         
-    }else if(direction === "l"){
+    }else if(direction === "r"){
         ictx.drawImage(canvas, -inMemoryCanvas.width / 2, -inMemoryCanvas.height / 2);
         ictx.restore();
         ctx.drawImage(inMemoryCanvas, x, 0);
