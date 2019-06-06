@@ -90,9 +90,9 @@ function glitch(){
     ictx.save();
     ictx.translate(inMemoryCanvas.width / 2, inMemoryCanvas.height / 2);
 
-    if(direction === "d"){
+    if(direction === "u"){
         ictx.rotate(Math.PI / 2);
-    }else if (direction ==="u"){
+    }else if (direction ==="d"){
         ictx.rotate(-Math.PI / 2);
     }else if (direction ==="r"){
         ictx.rotate(Math.PI);
@@ -124,15 +124,24 @@ function glitch(){
     }
 
     ctx.putImageData(imgData, 0, 0);
-    // debugger;
+    
     ictx = inMemoryCanvas.getContext('2d');
     ictx.save();
     ictx.translate(inMemoryCanvas.width / 2, inMemoryCanvas.height / 2);
 
-    if (direction === "d") {
+    if (direction === "u") {
         ictx.rotate(-Math.PI / 2);
-    } else if (direction === "u") {
+        ictx.drawImage(canvas, -inMemoryCanvas.width / 2, -inMemoryCanvas.height / 2);
+        ictx.restore();
+        ctx.drawImage(inMemoryCanvas, 0, -x);
+        ctx.drawImage(inMemoryCanvas, 0, canvas.height - x);
+
+    } else if (direction === "d") {
         ictx.rotate(Math.PI / 2);
+        ictx.drawImage(canvas, -inMemoryCanvas.width / 2, -inMemoryCanvas.height / 2);
+        ictx.restore();
+        ctx.drawImage(inMemoryCanvas, 0, x);
+        ctx.drawImage(inMemoryCanvas, 0, -canvas.height + x);
     } else if (direction === "r") {
         ictx.rotate(-Math.PI);
         ictx.drawImage(canvas, -inMemoryCanvas.width / 2, -inMemoryCanvas.height / 2);
