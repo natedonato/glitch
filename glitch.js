@@ -75,6 +75,7 @@ function handleFetch(){
 
 function glitch(){
     let x = document.getElementById("x").value;
+    x = parseInt(x);
     let percent = document.getElementById("percent");
     let brightness = document.getElementById("bright");
     let direction = document.getElementById("direction").value;
@@ -123,7 +124,7 @@ function glitch(){
     }
 
     ctx.putImageData(imgData, 0, 0);
-
+    // debugger;
     ictx = inMemoryCanvas.getContext('2d');
     ictx.save();
     ictx.translate(inMemoryCanvas.width / 2, inMemoryCanvas.height / 2);
@@ -134,26 +135,17 @@ function glitch(){
         ictx.rotate(Math.PI / 2);
     } else if (direction === "r") {
         ictx.rotate(-Math.PI);
+        ictx.drawImage(canvas, -inMemoryCanvas.width / 2, -inMemoryCanvas.height / 2);
+        ictx.restore();
+        ctx.drawImage(inMemoryCanvas, canvas.width - x, 0);
+        ctx.drawImage(inMemoryCanvas, -x, 0);
+        
+    }else if(direction === "l"){
+        ictx.drawImage(canvas, -inMemoryCanvas.width / 2, -inMemoryCanvas.height / 2);
+        ictx.restore();
+        ctx.drawImage(inMemoryCanvas, x, 0);
+        ctx.drawImage(inMemoryCanvas, -canvas.width + x, 0);
     }
-
-    ictx.drawImage(canvas, -inMemoryCanvas.width / 2, -inMemoryCanvas.height / 2);
-    ictx.restore();
-    ctx.drawImage(inMemoryCanvas, 0,0);
-
-
-    // ictx.translate(inMemoryCanvas.width / 2, inMemoryCanvas.height / 2);
-    // if (direction === "d") {
-    //     ictx.rotate(-Math.PI / 2);
-    //     imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    //     ictx.putImageData(imgData, 0, 0);
-    // }else if (direction ==="u"){
-    //     ictx.rotate(Math.PI / 2);
-    //     imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    //     ictx.putImageData(imgData, 0, 0);
-
-    // }else if (direction === "r") {
-    //     ictx.rotate(-Math.PI);
-    // }
 
 }
 
